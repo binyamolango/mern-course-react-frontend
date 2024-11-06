@@ -2,8 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
-  Switch
+  Routes
 } from 'react-router-dom';
 
 import Users from './user/pages/Users';
@@ -16,18 +15,11 @@ const App = () => {
     <Router>
       <MainNavigation />
       <main>
-        <Switch>
-          <Route path="/" exact>
-            <Users />
-          </Route>
-          <Route path="/:userId/places" exact>
-            <UserPlaces />
-          </Route>
-          <Route path="/places/new" exact>
-            <NewPlace />
-          </Route>
-          <Redirect to="/" />
-        </Switch>
+        <Routes>
+          <Route to="/" element={<Users />} />
+          <Route path="/:userId/places" element={<UserPlaces />} />
+          <Route path="/places/new" element={<NewPlace />} />
+        </Routes>
       </main>
     </Router>
   );
